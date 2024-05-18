@@ -1,0 +1,171 @@
+#include <iostream>
+#include <vector>
+#include <list>
+#include <queue> // Include priority_queue header
+using namespace std;
+
+int hash_function(int e_num) {
+    // Using the division method with 5 as no collisions occur here
+    int hash_key = e_num % 5;
+    return hash_key;
+}
+
+struct Compare {
+    bool operator()(const pair<pair<int, int>, int>& a, const pair<pair<int, int>, int>& b) {
+        if (a.second != b.second) {
+            // Prioritize by emergency number first
+            return a.second < b.second; // Higher emergency number means higher priority
+        } else if (a.first.first != b.first.first) {
+            // If emergency numbers are equal, prioritize by severity
+            return a.first.first < b.first.first; // Higher severity means higher priority
+        } else {
+            // If both emergency numbers and severities are equal, prioritize by distance
+            return a.first.second > b.first.second; // Lesser distance means higher priority
+        }
+    }
+};
+
+void hashtable(int hash_key, vector<list<pair<int, int>>>& table, priority_queue<pair<pair<int, int>, int>, vector<pair<pair<int, int>, int>>, Compare>& pq, int value, int distance) {
+    table[hash_key].push_back({value, distance});
+    pq.push({{value, distance}, hash_key});
+}
+
+int main() {
+    cout << "This is the Emergency Alert Triggering System" << endl;
+    cout << "The following emergencies are taken into consideration:" << endl;
+    cout << "NUMBER| EMERGENCYNAME|THRESHOLD_VALUE|" << endl;
+    cout << " 0 FIREACCIDENT 300" << endl;
+    cout << " 1 ROADACCIDENT 200" << endl;
+    cout << " 2 HEARTSTROKE 100" << endl;
+    cout << " 3 PREGNANCYALERT 50" << endl;
+    cout << " 4 CHILDABUSE 25" << endl;
+
+    // Take the table with size 5 as there are 5 emergencies
+    vector<list<pair<int, int>>> table(5);
+    priority_queue<pair<pair<int, int>, int>, vector<pair<pair<int, int>, int>>, Compare> pq; // Priority queue to store emergencies
+
+    // Loop for asking the user to enter the emergencies encountered
+    cout << "Type -1 if your emergencies are over, else type 1 to continue." << endl;
+    int choice, e_num, value, hash_key, distance;
+    cin >> choice;
+    if (choice == -1);
+    else {
+        while (choice != -1) {
+            cout << "Enter the number which corresponds to your emergency." << endl;
+            cin >> e_num;
+            if (e_num >= 5)
+                cout << "It exceeded the size of hashtable" << endl;
+            else {
+                cout << "Enter the value; here it means the severity of the emergency. Give the value according to the dangerous/hazardous situations proning currently." << endl;
+                cin >> value;
+                cout << "Enter the distance for this emergency:" << endl;
+                cin >> distance;
+                hash_key = hash_function(e_num);
+                hashtable(hash_key, table, pq, value, distance);
+            }
+            cout << "Give your choice:" << endl;
+            cin >> choice;
+        }
+    }
+
+    string s;
+    cout << "If you want to modify any changes like add or delete, click on yes else no" << endl;
+    cin >> s;
+    if (s == "no");
+    else {
+        int c = 1;
+        while (c) {
+            cout << "Click 1 to insert emergency:" << endl;
+            cout << "Click 2 to delete emergency:" << endl;
+            cout << "Click 3 to search emergency:" << endl;
+            int option;
+            cin >> option;
+            switch (option) {
+                case 1:
+                    cout << "Enter the number which corresponds to your emergency." << endl;
+                    cin >> e_num;
+                    if (e_num >= 5)
+                        cout << "It exceeded the size of hashtable" << endl;
+                    else {
+                        cout << "Enter the value; here it means the severity of the emergency. Give the value according to the dangerous/hazardous situations proning currently." << endl;
+                        cin >> value;
+                        cout << "Enter the distance for this emergency:" << endl;
+                        cin >> distance;
+                        hash_key = hash_function(e_num);
+                        hashtable(hash_key, table, pq, value, distance);
+                    }
+                    break;
+                case 2:
+                    cout << "Enter the number which corresponds to your emergency to be deleted." << endl;
+                    cin >> e_num;
+                    // Assuming you want to clear the list for that index
+                    table[e_num].clear();
+                    break;
+                case 3:
+                    cout << "Enter the number which corresponds to your emergency to be searched." << endl;
+                    cin >> e_num;
+                    cout << e_num << " ";
+                    for (pair<int, int> val : table[e_num]) {
+                        cout << "Severity: " << val.first << ", Distance: " << val.second << endl;
+                    }
+                    cout << endl;
+                    break;
+                default:
+                    cout << "Invalid entry!! Please give it correctly." << endl;
+            }
+            cout << "If you want to continue, press 1 else 0. Note that only 5 slots are available for insertion." << endl;
+            cin >> c;
+        }
+    }
+
+    cout << "Final hashtable emergencies:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << i << " ";
+        for (pair<int, int> val : table[i]) {
+            cout << " Severity: " << val.first << ", Distance: " << val.second << endl;
+        }
+        cout << endl;
+    }
+
+    cout << "Priority Queue of Emergencies (Descending Order of Severity):" << endl;
+    while (!pq.empty()) {
+        pair<pair<int, int>, int> top = pq.top();
+        pq.pop();
+        cout << "Emergency Number: " << top.second << ", Severity: " << top.first.first << ", Distance: " << top.first.second << endl;
+        cout << "Precautions to be taken:" << endl;
+
+        if (top.second == 0) {
+            cout << "Evacuate the area immediately and call emergency services." << endl;
+            cout << "Use fire extinguishers if safe to do so and if trained." << endl;
+            cout << "Stay low to the ground if smoke is present to minimize inhalation." << endl;
+            cout << "Call : 101" << endl;
+        } else if (top.second == 1) {
+            cout << "Assess the scene for safety hazards and ensure personal safety." << endl;
+            cout << "Call emergency services and provide accurate location details." << endl;
+            cout << "Administer basic first aid if trained, while awaiting medical help." << endl;
+            cout << "Clear the area of bystanders if possible to prevent further accidents." << endl;
+            cout << "Call : 108" << endl;
+        } else if (top.second == 2) {
+            cout << "Recognize symptoms such as chest pain, shortness of breath, and dizziness." << endl;
+            cout << "Call emergency services immediately and provide necessary medical history." << endl;
+            cout << "Assist the individual to sit or lie down comfortably while awaiting help." << endl;
+            cout << "Administer CPR if trained and necessary, following current guidelines." << endl;
+            cout << "Call : 108" << endl;
+        } else if (top.second == 3) {
+            cout << "Stay calm and reassure the pregnant individual." << endl;
+            cout << "Assist them to a comfortable position, preferably lying on their left side." << endl;
+            cout << "Call emergency services and provide necessary medical history." << endl;
+            cout << "Assist the individual to sit or lie down comfortably while awaiting help." << endl;
+            cout << "Monitor vital signs and provide reassurance until help arrive" << endl;
+            cout << "Call : 108" << endl;
+        } else if (top.second == 4) {
+            cout << "Ensure the safety of the child by removing them from harm's way." << endl;
+            cout << "Document any visible injuries or signs of abuse discreetly and accurately." << endl;
+            cout << "Report the incident to the appropriate authorities immediately." << endl;
+            cout << "Provide emotional support to the child and reassure them that they are safe." << endl;
+            cout << "Call : 112" << endl;
+        }
+    }
+
+    return 0;
+}

@@ -1,5 +1,3 @@
----
-
 # 🚨 Emergency Alert Triggering System
 
 This C++-based simulation provides an emergency alert triggering system using **hash tables** and **priority queues**. The system prioritizes emergencies based on severity and proximity, providing life-saving precautionary guidelines for different emergency situations like fire, road accidents, heart strokes, and more.

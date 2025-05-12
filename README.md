@@ -145,5 +145,4 @@ Contributions are welcome! If you'd like to contribute, feel free to fork this r
 
 This project is licensed under the MIT License.
 
-```
 

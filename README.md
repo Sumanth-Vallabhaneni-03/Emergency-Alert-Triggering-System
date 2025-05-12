@@ -45,8 +45,8 @@ This C++-based simulation provides an emergency alert triggering system using **
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/EmergencyAlertSystem.git
-   cd EmergencyAlertSystem
+   git clone https://github.com/Sumanth-Vallabhaneni-03/Emergency-Alert-Triggering-System.git
+   cd Emergency-Alert-Triggering-System
 
 
 2. **Compile the C++ code**:
@@ -98,7 +98,7 @@ Precautions:
 The program logs all emergency reports to the following file:
 
 ```
-logs/emergency_log.txt
+emergency_log.txt
 ```
 
 This log file stores all emergency entries, including timestamps, severity values, distances, and precautionary actions, which can be used for auditing, statistics, or training purposes.
@@ -125,8 +125,7 @@ EmergencyAlertSystem/
 ├── src/
 │   └── EmergencyAlertSystem.cpp    # Main C++ code file
 │
-├── logs/
-│   └── emergency_log.txt          # Log file for all emergencies
+├── emergency_log.txt          # Log file for all emergencies
 │
 ├── README.md                      # Project documentation
 │

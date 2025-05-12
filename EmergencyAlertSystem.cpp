@@ -34,7 +34,7 @@ void hashtable(int hash_key, vector<list<pair<int, int>>>& table, priority_queue
 }
 
 void log_alert(int e_num, int severity, int distance) {
-    ofstream log("alerts.txt", ios::app);
+    ofstream log("emergency_log.txt", ios::app);
     time_t now = time(0);
     char* dt = ctime(&now);
     log << "Time: " << dt

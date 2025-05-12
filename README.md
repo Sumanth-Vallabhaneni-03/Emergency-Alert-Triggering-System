@@ -1,70 +1,92 @@
-Here's a new, detailed `README.md` file for your **Emergency Alert Triggering System** project:
+Here’s an updated and detailed **README.md** file for your project, reflecting the changes in file names and project structure:
 
 ---
 
+````markdown
 # 🚨 Emergency Alert Triggering System
 
-This project is a C++-based system that simulates an emergency alert triggering system using key data structures such as **hash tables** and **priority queues**. It is designed to log, prioritize, and respond to various emergencies like fire accidents, road accidents, and more.
+This C++-based simulation provides an emergency alert triggering system using **hash tables** and **priority queues**. The system prioritizes emergencies based on severity and proximity, providing life-saving precautionary guidelines for different emergency situations like fire, road accidents, heart strokes, and more.
+
+---
 
 ## 📌 Features
 
-* 📊 Uses a **hash table** for efficient data storage and retrieval.
-* ⚡ Implements a **priority queue** to ensure high-severity, close-range emergencies are handled first.
-* 🔔 Multiple emergency types handled: Fire, Road Accidents, Heart Strokes, Pregnancy Alerts, and Child Abuse.
-* 🔄 Supports real-time **insertion, deletion, and searching** of emergency entries.
-* 🧠 Dynamically calculates emergency priorities based on severity and proximity.
-* 📝 Detailed **precaution guidelines** for each emergency type.
-* 📁 Logs emergencies to a text file for persistent record-keeping.
+- 📊 Efficient data storage using **hash tables**
+- ⚡ Prioritized emergency handling with **priority queues**
+- 🔔 Handles various emergency types:
+  - Fire Accidents
+  - Road Accidents
+  - Heart Strokes
+  - Pregnancy Alerts
+  - Child Abuse
+- 🔄 Allows **insertion**, **deletion**, and **searching** of emergencies
+- 📝 Provides **precautionary actions** for each emergency type
+- 📁 Logs all emergencies to a file `logs/emergency_log.txt`
+
+---
 
 ## 🧱 Data Structures Used
 
-* **Hash Table**: Maps emergency numbers to a list of incidents using the division method (`e_num % 5`).
-* **Priority Queue**: Ranks emergency reports by:
+| Data Structure | Purpose |
+|----------------|---------|
+| **Hash Table** | Maps emergency numbers to a list of incident entries, allowing O(1) average-case access for quick updates. |
+| **Priority Queue** | Ensures the most urgent emergencies (highest severity and nearest) are handled first. |
 
-  1. Emergency number (type-based priority),
-  2. Severity (higher is more urgent),
-  3. Distance (closer is more urgent).
+---
 
 ## 📖 Emergency Codes
 
-| Number | Emergency Name  | Threshold Value |
-| ------ | --------------- | --------------- |
-| 0      | Fire Accident   | 300             |
-| 1      | Road Accident   | 200             |
-| 2      | Heart Stroke    | 100             |
-| 3      | Pregnancy Alert | 50              |
-| 4      | Child Abuse     | 25              |
+| Number | Emergency Name    | Threshold Value |
+|--------|-------------------|-----------------|
+| 0      | Fire Accident     | 300             |
+| 1      | Road Accident     | 200             |
+| 2      | Heart Stroke      | 100             |
+| 3      | Pregnancy Alert   | 50              |
+| 4      | Child Abuse       | 25              |
+
+---
 
 ## 🚀 How to Run
 
-1. Compile the program using a C++ compiler:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/EmergencyAlertSystem.git
+   cd EmergencyAlertSystem
+````
+
+2. **Compile the C++ code**:
+   Use the `g++` command or a Makefile to compile the code:
 
    ```bash
-   g++ -o EmergencySystem main.cpp
+   g++ -o EmergencySystem src/EmergencyAlertSystem.cpp
    ```
 
-2. Run the compiled program:
+   Alternatively, you can use the Makefile to automatically compile:
+
+   ```bash
+   make
+   ```
+
+3. **Run the program**:
 
    ```bash
    ./EmergencySystem
    ```
 
-3. Follow the on-screen prompts to:
+4. **Follow the interactive prompts** to add, delete, and search for emergency incidents.
 
-   * Add new emergencies,
-   * Search or delete incidents,
-   * View prioritized emergency responses.
+---
 
-## 📋 Example Interaction
+## 🧪 Sample Output
 
-```
+```text
 Enter the number which corresponds to your emergency.
 > 0
 Enter severity value.
 > 400
 Enter distance.
 > 2
-...
+
 Priority Queue:
 Emergency Number: 0, Severity: 400, Distance: 2
 Precautions:
@@ -74,26 +96,59 @@ Precautions:
 - Call : 101
 ```
 
+---
+
+## 📁 Logs
+
+The program logs all emergency reports to the following file:
+
+```
+logs/emergency_log.txt
+```
+
+This log file stores all emergency entries, including timestamps, severity values, distances, and precautionary actions, which can be used for auditing, statistics, or training purposes.
+
+---
+
 ## 🔐 Future Enhancements
 
-* GUI-based interface for easier use
-* Real-time location tracking with GPS integration
-* SMS/Email notification support
-* Admin/User login system
-* Emergency drill simulations
+Here are some possible enhancements for future versions:
 
-## 📁 Output
+* 🌐 **GUI Interface**: Create a user-friendly graphical interface for easier interaction.
+* 📍 **GPS Tracking**: Integrate real-time location data to dynamically prioritize emergencies based on proximity.
+* 📲 **SMS/Email Notifications**: Enable automated notifications to relevant personnel during emergencies.
+* 👤 **User Authentication**: Implement user and admin logins for restricted access and auditing.
+* 🎯 **Emergency Drills**: Create simulated emergency drills for training and preparedness.
 
-The system outputs a log file:
+---
+
+## 📋 File Structure
 
 ```
-emergency_log.txt
+EmergencyAlertSystem/
+│
+├── src/
+│   └── EmergencyAlertSystem.cpp    # Main C++ code file
+│
+├── logs/
+│   └── emergency_log.txt          # Log file for all emergencies
+│
+├── README.md                      # Project documentation
+│
+├── Makefile                       # Optional: For easier compilation
 ```
 
-This contains a timestamped list of all handled emergencies for review and analysis.
+---
 
 ## 🤝 Contributing
 
-Feel free to fork the repository and submit pull requests to add new features or fix bugs.
+Contributions are welcome! If you'd like to contribute, feel free to fork this repository, make changes, and submit a pull request. If you have any feature requests or bug reports, please open an issue.
 
 ---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+```
+

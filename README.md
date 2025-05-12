@@ -1,8 +1,5 @@
-Here’s an updated and detailed **README.md** file for your project, reflecting the changes in file names and project structure:
-
 ---
 
-````markdown
 # 🚨 Emergency Alert Triggering System
 
 This C++-based simulation provides an emergency alert triggering system using **hash tables** and **priority queues**. The system prioritizes emergencies based on severity and proximity, providing life-saving precautionary guidelines for different emergency situations like fire, road accidents, heart strokes, and more.
@@ -52,7 +49,7 @@ This C++-based simulation provides an emergency alert triggering system using **
    ```bash
    git clone https://github.com/your-username/EmergencyAlertSystem.git
    cd EmergencyAlertSystem
-````
+
 
 2. **Compile the C++ code**:
    Use the `g++` command or a Makefile to compile the code:
